@@ -15,8 +15,8 @@ requirements:
     - scons >=3.0
   host:
     - libboost
-  run:
-    - cantera {{ data.group(1)[:3] }}.*
+  # run:
+  #   - cantera {{ data.group(1)[:3] }}.*
 
 build:
   number: 0

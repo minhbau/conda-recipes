@@ -1,6 +1,9 @@
 python:
-  - 3.6
+  # - 3.6
   - 3.7
 numpy:
-  - 1.9.3  # [unix]
-  - 1.11.3  # [win]
+  - 1.11
+CONDA_BUILD_SYSROOT:  # [osx]
+  - /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk  # [osx]
+MACOSX_DEPLOYMENT_TARGET:      # [osx]
+  - 10.9                       # [osx]

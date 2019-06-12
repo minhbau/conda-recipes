@@ -46,36 +46,36 @@ outputs:
     test:
       script: run_test.sh
 
-  # - name: cantera
-  #   script: build_py.sh  # [not win]
-  #   script: build_py.bat  # [win]
-  #   requirements:
-  #     build:
-  #       - {{ compiler('c') }}
-  #       - {{ compiler('cxx') }}
-  #       - scons >=3.0
-  #     host:
-  #       - python
-  #       - libboost
-  #       - mkl  # [linux]
-  #       - numpy
-  #       - cython
-  #     run:
-  #       - python
-  #       - {{ pin_compatible('numpy') }}
-  #       - mkl  # [linux]
-  #       # - vs2015_runtime  # [win]
-  #   build:
-  #     entry_points:
-  #       - ck2cti = cantera.ck2cti:script_entry_point
-  #       - ctml_writer = cantera.ctml_writer:main
-  #     include_recipe: True
-  #   test:
-  #     imports:
-  #       - cantera
-  #     commands:
-  #       - python -m unittest -v cantera.test
-  #       - ck2cti --help
+  - name: cantera
+    script: build_py.sh  # [not win]
+    script: build_py.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+        - scons >=3.0
+      host:
+        - python
+        - libboost
+        - mkl  # [linux]
+        - numpy
+        - cython
+      run:
+        - python
+        - {{ pin_compatible('numpy') }}
+        - mkl  # [linux]
+        # - vs2015_runtime  # [win]
+    build:
+      entry_points:
+        - ck2cti = cantera.ck2cti:script_entry_point
+        - ctml_writer = cantera.ctml_writer:main
+      include_recipe: True
+    test:
+      imports:
+        - cantera
+      commands:
+        - python -m unittest -v cantera.test
+        - ck2cti --help
 
 about:
   home: https://cantera.org

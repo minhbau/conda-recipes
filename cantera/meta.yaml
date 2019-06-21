@@ -5,9 +5,9 @@ package:
   version: {{ data.group(1) }}
 
 source:
-  # git_url: https://github.com/Cantera/cantera.git
-  # git_tag: master
-  path: ../../cantera
+  git_url: https://github.com/Cantera/cantera.git
+  git_tag: master
+  # path: ../../cantera
 
 requirements:
   build:

@@ -46,9 +46,13 @@ install:
   - conda install -q anaconda-client conda-build\<4.0 conda\<5.0 conda-verify\<4.0
   - conda info -a
   - conda list
-  - export MW_HEADERS_DIR=$(pwd)/mw_headers
-  - git clone https://cantera:${GIT_PW}@cantera.org/mw_headers.git "${MW_HEADERS_DIR}"
-  - echo $MW_HEADERS_DIR
+  - |
+    if [ -z "${MATLAB_BUILD}" ]; then
+        export MW_HEADERS_DIR=$(pwd)/mw_headers;
+        git clone https://cantera:${GIT_PW}@cantera.org/mw_headers.git "${MW_HEADERS_DIR}";
+        echo $MW_HEADERS_DIR;
+    fi
+
 
 script:
   - |
@@ -72,8 +76,6 @@ matrix:
       env: BUILD_ARCH="x64"
     - os: osx
       env: BUILD_ARCH="x64"
-    - os: linux
-      env: BUILD_ARCH="x86" MATLAB_BUILD=1
     - os: linux
       env: BUILD_ARCH="x64" MATLAB_BUILD=1
     - os: osx

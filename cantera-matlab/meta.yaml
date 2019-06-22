@@ -24,6 +24,14 @@ build:
   script_env:
     - MW_HEADERS_DIR
 
+outputs:
+  - name: cantera-matlab
+    files:
+      - share/cantera/samples/matlab
+      - lib/cantera
+      - share/cantera/data
+      - share/cantera/doc
+
 about:
   home: https://cantera.org
   summary: "Chemical kinetics, thermodynamics, and transport tool suite"

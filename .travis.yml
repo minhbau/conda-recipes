@@ -47,7 +47,7 @@ install:
   - conda info -a
   - conda list
   - |
-    if [ -z "${MATLAB_BUILD}" ]; then
+    if [ "${MATLAB_BUILD}" == "1" ]; then
         export MW_HEADERS_DIR=$(pwd)/mw_headers;
         git clone https://cantera:${GIT_PW}@cantera.org/mw_headers.git "${MW_HEADERS_DIR}";
         echo $MW_HEADERS_DIR;

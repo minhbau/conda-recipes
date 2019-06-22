@@ -18,6 +18,10 @@ requirements:
     - libboost
     - mkl  # [linux]
 
+test:  # [osx]
+  requires:  # [osx]
+    - scons >= 3.0  # [osx]
+
 build:
   number: 0
   include_recipe: True

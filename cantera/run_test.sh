@@ -1,8 +1,11 @@
 echo "****************************"
 echo "LIBRARY TEST STARTED"
-echo "CONDA_BUILD_SYSROOT IS ${CONDA_BUILD_SYSROOT}"
-echo "MACOSX_DEPLOYMENT_TARGET IS ${MACOSX_DEPLOYMENT_TARGET}"
 echo "****************************"
+
+conda list
+echo `which scons`
+echo `which make`
+echo `which cmake`
 
 # Build and run the samples
 declare -a samples=("rankine"
@@ -25,6 +28,8 @@ for sample in "${samples[@]}"; do
     popd
 done
 
+# This sample needs to be built separately because the name of the C++ file
+# is different from the name of the folder
 pushd "${PREFIX}/share/cantera/samples/cxx/bvp"
 scons && rm blasius.o blasius || exit 1
 make && rm blasius || exit 1

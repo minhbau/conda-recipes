@@ -16,9 +16,8 @@ IF ERRORLEVEL 1 EXIT 1
 
 DEL /F cantera.conf
 
-SET CI_SUPPORT="%RECIPE_DIR%\..\.ci_support"
-COPY "%CI_SUPPORT%\cantera_base.conf" cantera.conf
-TYPE "%CI_SUPPORT%\cantera_win.conf" >> cantera.conf
+COPY "%RECIPE_DIR%\..\.ci_support\cantera_base.conf" cantera.conf
+ECHO msvc_version='14.1' >> cantera.conf
 
 :: Set the number of CPUs to use in building
 SET /A CPU_USE=%CPU_COUNT% / 2

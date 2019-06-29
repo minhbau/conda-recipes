@@ -10,14 +10,20 @@ fi
 
 rm -f cantera.conf
 
-CI_SUPPORT="${RECIPE_DIR}/../.ci_support"
-cp "${CI_SUPPORT}/cantera_base.conf" cantera.conf
+cp "${RECIPE_DIR}/../.ci_support/cantera_base.conf" cantera.conf
+
+echo "prefix = '${PREFIX}'" >> cantera.conf
+echo "boost_inc_dir = '${PREFIX}/include'" >> cantera.conf
 
 if [[ "${OSX_ARCH}" == "" ]]; then
-    cat "${CI_SUPPORT}/cantera_linux.conf" >> cantera.conf
-    cat "${CI_SUPPORT}/mkl.conf" >> cantera.conf
+    echo "CC = '${CC}'" >> cantera.conf
+    echo "CXX = '${CXX}'" >> cantera.conf
+    echo "blas_lapack_libs = 'mkl_rt,dl'" >> cantera.conf
+    echo "blas_lapack_dir = '${PREFIX}/lib'" >> cantera.conf
 else
-    cat "${CI_SUPPORT}/cantera_osx.conf" >> cantera.conf
+    echo "CC = '${CLANG}'" >> cantera.conf
+    echo "CXX = '${CLANGXX}'" >> cantera.conf
+    echo "cc_flags = '-isysroot ${CONDA_BUILD_SYSROOT} -mmacosx-version-min=${MACOSX_DEPLOYMENT_TARGET}'" >> cantera.conf
 fi
 
 set -xe

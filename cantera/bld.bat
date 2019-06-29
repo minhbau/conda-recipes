@@ -10,6 +10,8 @@ echo ****************************
 ::    CALL "%VS150COMNTOOLS%"\..\..\VC\bin\vcvars32.bat
 :: )
 
+DEL /F cantera.conf
+
 :: Set the number of CPUs to use in building
 SET /A CPU_USE=%CPU_COUNT% / 2
 IF %CPU_USE% EQU 0 SET CPU_USE=1

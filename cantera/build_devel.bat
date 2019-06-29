@@ -3,8 +3,9 @@ ECHO DEVEL BUILD STARTED
 ECHO ************************
 
 DEL /F cantera.conf
-COPY "%RECIPE_DIR%\.ci_support\cantera_base.conf"
-COPY "%RECIPE_DIR%\.ci_support\cantera_win.conf"
+SET CI_SUPPORT="%RECIPE_DIR%\..\.ci_support"
+COPY "%CI_SUPPORT%\cantera_base.conf"
+TYPE "%CI_SUPPORT%\cantera_win.conf" >> cantera.conf
 CALL scons install
 
 ECHO ************************

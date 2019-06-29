@@ -9,12 +9,14 @@ if [[ "$DIRTY" != "1" ]]; then
 fi
 
 rm -f cantera.conf
-cp "${RECIPE_DIR}/.ci_support/cantera_base.conf" cantera.conf
+
+CI_SUPPORT="${RECIPE_DIR}/../.ci_support"
+cp "${CI_SUPPORT}/cantera_base.conf" cantera.conf
 
 if [[ "${OSX_ARCH}" == "" ]]; then
-    cat "${RECIPE_DIR}/.ci_support/cantera_linux.conf" >> cantera.conf
+    cat "${CI_SUPPORT}/cantera_linux.conf" >> cantera.conf
 else
-    cat "${RECIPE_DIR}/.ci_support/cantera_osx.conf" >> cantera.conf
+    cat "${CI_SUPPORT}/cantera_osx.conf" >> cantera.conf
 fi
 
 echo "matlab_toolbox = 'y'" >> cantera.conf

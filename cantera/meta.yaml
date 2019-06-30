@@ -20,10 +20,6 @@ requirements:
     - libboost
     - mkl  # [linux]
 
-test:  # [osx]
-  requires:  # [osx]
-    - scons >= 3.0  # [osx]
-
 build:
   number: 0
   include_recipe: True
@@ -52,8 +48,8 @@ outputs:
       include_recipe: True
       ignore_run_exports:
         - libboost
-    test:
-      script: run_test.sh
+    # test:
+    #   script: run_test.sh
 
   - name: cantera
     script: build_py.sh  # [not win]

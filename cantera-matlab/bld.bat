@@ -42,12 +42,12 @@ IF ERRORLEVEL 1 EXIT 1
 
 :: "Install" just the Matlab interface. This method should
 :: prevent this package from clobbering any existing
-:: libcantera or Cantera Python interface files, except the
+:: libcantera or Cantera Python interface files, possibly except the
 :: data files and the license file.
-ROBOCOPY "%STAGE_DIR%\samples\matlab" "%LIBRARY_PREFIX%\share\cantera\samples\matlab" /S /E
+ROBOCOPY "%STAGE_DIR%\samples\matlab" "%LIBRARY_PREFIX%\cantera\samples\matlab" /S /E
 ROBOCOPY "%STAGE_DIR%\matlab" "%LIBRARY_LIB%\cantera\matlab" /S /E
-ROBOCOPY "%STAGE_DIR%\data" "%LIBRARY_PREFIX%\share\cantera\data" /S /E
-ROBOCOPY "%STAGE_DIR%\doc" "%LIBRARY_PREFIX%\share\cantera\doc" /S /E
+ROBOCOPY "%STAGE_DIR%\data" "%LIBRARY_PREFIX%\cantera\data" /S /E
+ROBOCOPY "%STAGE_DIR%\doc" "%LIBRARY_PREFIX%\cantera\doc" /S /E
 
 echo ****************************
 echo MATLAB BUILD COMPLETED SUCCESSFULLY

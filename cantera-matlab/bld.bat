@@ -19,7 +19,7 @@ DEL /F cantera.conf
 COPY "%RECIPE_DIR%\..\.ci_support\cantera_base.conf" cantera.conf
 ECHO msvc_version='14.1' >> cantera.conf
 
-SET STAGE_DIR="stage"
+SET "STAGE_DIR=stage"
 ECHO stage_dir="%STAGE_DIR%" >> cantera.conf
 ECHO prefix="" >> cantera.conf
 

@@ -6,7 +6,8 @@ install:
   - cmd: conda install -yq anaconda-client conda^<5.0 conda-build^<4.0 conda-verify^<4.0
   - cmd: conda info -a
   - cmd: conda list
-  - cmd: IF "%MATLAB_BUILD%"=="1" git clone https://cantera:%GIT_PW%@cantera.org/mw_headers.git
+  - cmd: IF "%MATLAB_BUILD%"=="1" SET MW_HEADERS_DIR="%CD%\..\mw_headers"
+  - cmd: IF "%MATLAB_BUILD%"=="1" git clone https://cantera:%GIT_PW%@cantera.org/mw_headers.git "%MW_HEADERS_DIR%"
   - cmd: ECHO %CD%
   - ps: Write-Host $env:APPVEYOR_REPO_BRANCH
   - ps: Write-Host $env:APPVEYOR_PULL_REQUEST_NUMBER
@@ -14,7 +15,6 @@ install:
 build_script:
   - cmd: CALL %PYTHON_LOC%\Scripts\activate.bat
   - cmd: IF "%MATLAB_BUILD%"=="0" conda build cantera -m .\.ci_support\conda_build_config.yaml
-  - cmd: IF "%MATLAB_BUILD%"=="1" SET MW_HEADERS_DIR="%CD%\..\mw_headers"
   - cmd: IF "%MATLAB_BUILD%"=="1" conda build cantera-matlab -m .\.ci_support\conda_build_config.yaml
 
 deploy_script:
@@ -37,12 +37,12 @@ environment:
     secure: ZDKGbBpWbzWubzWcf909xg==
 
   matrix:
-    - PYTHON_LOC: C:\Miniconda3
-      BUILD_ARCH: '32'
-      MATLAB_BUILD: '0'
-    - PYTHON_LOC: C:\Miniconda3-x64
-      BUILD_ARCH: '64'
-      MATLAB_BUILD: '0'
+    # - PYTHON_LOC: C:\Miniconda3
+    #   BUILD_ARCH: '32'
+    #   MATLAB_BUILD: '0'
+    # - PYTHON_LOC: C:\Miniconda3-x64
+    #   BUILD_ARCH: '64'
+    #   MATLAB_BUILD: '0'
     - PYTHON_LOC: C:\Miniconda3
       BUILD_ARCH: '32'
       MATLAB_BUILD: '1'

@@ -12,12 +12,10 @@ install:
   - ps: Write-Host $env:APPVEYOR_PULL_REQUEST_NUMBER
 
 build_script:
-  - cmd: CALL %PYTHON_LOC%\Scripts\activate.bat
   - cmd: IF "%MATLAB_BUILD%"=="0" conda build cantera -m .\.ci_support\conda_build_config.yaml
   - cmd: IF "%MATLAB_BUILD%"=="1" conda build cantera-matlab -m .\.ci_support\conda_build_config.yaml
 
 deploy_script:
-  - cmd: CALL %PYTHON_LOC%\Scripts\activate.bat
   - ps: |
         if($env:APPVEYOR_REPO_BRANCH -eq "master" -and !$env:APPVEYOR_PULL_REQUEST_NUMBER)
         {
@@ -36,12 +34,12 @@ environment:
     secure: ZDKGbBpWbzWubzWcf909xg==
 
   matrix:
-    # - PYTHON_LOC: C:\Miniconda3
-    #   BUILD_ARCH: '32'
-    #   MATLAB_BUILD: '0'
-    # - PYTHON_LOC: C:\Miniconda3-x64
-    #   BUILD_ARCH: '64'
-    #   MATLAB_BUILD: '0'
+    - PYTHON_LOC: C:\Miniconda3
+      BUILD_ARCH: '32'
+      MATLAB_BUILD: '0'
+    - PYTHON_LOC: C:\Miniconda3-x64
+      BUILD_ARCH: '64'
+      MATLAB_BUILD: '0'
     - PYTHON_LOC: C:\Miniconda3
       BUILD_ARCH: '32'
       MATLAB_BUILD: '1'

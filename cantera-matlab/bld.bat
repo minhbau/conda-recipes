@@ -32,7 +32,7 @@ ECHO boost_inc_dir="%ESC_LIB_INC%" >> cantera.conf
 
 ECHO matlab_toolbox='y' >> cantera.conf
 SET "ESC_MW_HDR_DIR=%MW_HEADERS_DIR:\=/%"
-ECHO matlab_path='%ESC_MW_HDR_DIR%' >> cantera.conf
+ECHO matlab_path="%ESC_MW_HDR_DIR%" >> cantera.conf
 
 CALL scons build -j%CPU_USE%
 IF ERRORLEVEL 1 EXIT 1
